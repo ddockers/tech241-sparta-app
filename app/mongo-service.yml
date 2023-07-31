@@ -1,0 +1,22 @@
+---
+# Select the type of API version and type of service/object
+apiVersion: v1
+kind: Service
+# Metadata for name
+metadata:
+  name: mongo
+  namespace: default #sre
+
+# Specification to include ports selector to connect to the deployment
+spec:
+  ports:
+  - nodePort: 
+    port: 27017
+    targetPort: 27017
+
+# Let's define the selector and label to connect to mongo deployment
+  selector:
+    app: mongo # this label connects this service to the deployment
+
+# Creating NodePort type of deployment
+  type: NodePort
